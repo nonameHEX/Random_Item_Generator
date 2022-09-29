@@ -7,8 +7,6 @@
 using namespace std;
 
 class Weapon{
-    int m_dMIN = 0, m_dMAX = 1;
-
     string m_type = "";                                             // Sword, Bow, Staff
     float m_level = 0;                                              // Level of weapon
     string m_rarity = "";                                           // Common = 1, Magic = 2, Rare = 3, Legendary = 4
