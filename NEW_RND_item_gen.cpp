@@ -23,7 +23,7 @@ class Weapon{
     int m_rarity = 0;                                               // Common = 1, Magic = 2, Rare = 3, Legendary = 4
     int m_baseDamage = 0;                                           // Base damage    
     float m_attackSpeed = 0;                                        // Attack speed of weapon
-    float m_damage = 0;                                             // Calculated damage
+    int m_damage = 0;                                               // Calculated damage
 
 public: 
     Weapon(int type, int level, int rarity){
