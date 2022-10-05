@@ -15,24 +15,35 @@
 
 using namespace std;
 
-#define COMMON 1
-#define MAGIC 2
-#define RARE 3
-#define LEGENDARY 4
-
-#define SWORD 11
-#define BOW 12
-#define STAFF 13
-
-#define ZOMBIE 21
-#define SKELETON 22
-#define ORC 23
-#define BOSS_ARACHNID 24
-
 const int rarityWeapWeight[] = {50, 30, 15, 5};
 
+class GameConstants{
+public:
+    enum WeaponRarity{
+        COMMON = 1,
+        MAGIC = 2,
+        RARE = 3,
+        LEGENDARY = 4,
+    };
+
+    enum WeaponTypes{
+        SWORD = 11,
+        BOW = 12,
+        STAFF = 13,
+    };
+
+    enum MobTypes{
+        ZOMBIE = 21,
+        SKELETON = 22,
+        ORC = 23,
+        BOSS_ARACHNID = 24,
+    };
+
+    //static constexpr int rarityWeapWeight[] = {50, 30, 15, 5};
+};
+
 class Weapon{
-    int m_type = 0;                                                 // Sword, Bow, Staff
+    int m_type = 0;                                                 // Sword = 11, Bow = 12, Staff = 13
     int m_level = 0;                                                // Level of weapon
     int m_rarity = 0;                                               // Common = 1, Magic = 2, Rare = 3, Legendary = 4
     int m_baseDamage = 0;                                           // Base damage    
@@ -58,17 +69,17 @@ public:
 
 private:
     string convertWeapTypeToString(){
-        if(m_type == SWORD) return "Sword";
-        if(m_type == BOW) return "Bow";
-        if(m_type == STAFF) return "Staff";
+        if(m_type == GameConstants::SWORD) return "Sword";
+        if(m_type == GameConstants::BOW) return "Bow";
+        if(m_type == GameConstants::STAFF) return "Staff";
         return "Bug in weapon type!";
     }
 
     string convertWeapRarityToString(){
-        if(m_rarity == COMMON) return "Common"; 
-        if(m_rarity == MAGIC) return "Magic";
-        if(m_rarity == RARE) return "Rare";
-        if(m_rarity == LEGENDARY) return "Legendary";
+        if(m_rarity == GameConstants::COMMON) return "Common"; 
+        if(m_rarity == GameConstants::MAGIC) return "Magic";
+        if(m_rarity == GameConstants::RARE) return "Rare";
+        if(m_rarity == GameConstants::LEGENDARY) return "Legendary";
         return "Bug in weapon rarity!";
     }
 
@@ -87,17 +98,17 @@ private:
         return 999;
     }
     int initWeapBaseDamage(){
-        if(m_rarity == COMMON) return 5;
-        if(m_rarity == MAGIC) return 10;
-        if(m_rarity == RARE) return 20;
-        if(m_rarity == LEGENDARY) return 40;
+        if(m_rarity == GameConstants::COMMON) return 5;
+        if(m_rarity == GameConstants::MAGIC) return 10;
+        if(m_rarity == GameConstants::RARE) return 20;
+        if(m_rarity == GameConstants::LEGENDARY) return 40;
         return 999;
     }
 
     float initWeapAttackSpeed(){
-        if(m_type == SWORD) return 1.3;
-        if(m_type == BOW) return 1.5;
-        if(m_type == STAFF) return 1.1;
+        if(m_type == GameConstants::SWORD) return 1.3;
+        if(m_type == GameConstants::BOW) return 1.5;
+        if(m_type == GameConstants::STAFF) return 1.1;
         return 999;
     }
 
@@ -107,7 +118,7 @@ private:
 };
 
 class Monster{
-    int m_type = 0;                                                 // Zombie, Skeleton, Orc, Arachnid boss
+    int m_type = 0;                                                 // Zombie = 21, Skeleton = 22, Orc = 23, Arachnid boss = 24
     int m_level = 0;                                                // Level of monster
     int m_baseHealth = 0;                                           // Base health
     int m_baseDamage = 0;                                           // Base damage    
@@ -134,31 +145,31 @@ public:
     }
 private:
     string convertMonTypeToString(){
-        if(m_type == ZOMBIE) return "Zombie";
-        if(m_type == SKELETON) return "Skeleton";
-        if(m_type == ORC) return "Orc";
-        if(m_type == BOSS_ARACHNID) return "Arachnid Boss";
+        if(m_type == GameConstants::ZOMBIE) return "Zombie";
+        if(m_type == GameConstants::SKELETON) return "Skeleton";
+        if(m_type == GameConstants::ORC) return "Orc";
+        if(m_type == GameConstants::BOSS_ARACHNID) return "Arachnid Boss";
         return "Bug in monster type!";
     }
     int initMonBaseHealth(){
-        if(m_type == ZOMBIE) return 4;
-        if(m_type == SKELETON) return 5;
-        if(m_type == ORC) return 10;
-        if(m_type == BOSS_ARACHNID) return 25;
+        if(m_type == GameConstants::ZOMBIE) return 4;
+        if(m_type == GameConstants::SKELETON) return 5;
+        if(m_type == GameConstants::ORC) return 10;
+        if(m_type == GameConstants::BOSS_ARACHNID) return 25;
         return 999;
     }
     int initMonBaseDamage(){
-        if(m_type == ZOMBIE) return 6;
-        if(m_type == SKELETON) return 5;
-        if(m_type == ORC) return 20;
-        if(m_type == BOSS_ARACHNID) return 30;
+        if(m_type == GameConstants::ZOMBIE) return 6;
+        if(m_type == GameConstants::SKELETON) return 5;
+        if(m_type == GameConstants::ORC) return 20;
+        if(m_type == GameConstants::BOSS_ARACHNID) return 30;
         return 999;
     }
     float initMonAttackSpeed(){
-        if(m_type == ZOMBIE) return 1.2;
-        if(m_type == SKELETON) return 1.2;
-        if(m_type == ORC) return 1;
-        if(m_type == BOSS_ARACHNID) return 1.3;
+        if(m_type == GameConstants::ZOMBIE) return 1.2;
+        if(m_type == GameConstants::SKELETON) return 1.2;
+        if(m_type == GameConstants::ORC) return 1;
+        if(m_type == GameConstants::BOSS_ARACHNID) return 1.3;
         return 999;
     }
     int calcMonDamage(){
@@ -177,11 +188,11 @@ void weaponThread(int level){
     int type = 0;
     int totalRarity = 0;
     int rarityRand = 0;
-    for (int ind : rarityWeapWeight)
+    for (int rarityValue : rarityWeapWeight)
     {
-        totalRarity += ind;
+        totalRarity += rarityValue;
     }
-    for(int i = 0; i < 20; i++){
+    for(int i = 0; i < 3; i++){
         rarityRand = rand() % totalRarity + 1;                  // Total rarity - sum of weights
         type = rand() % 3 + 11;                                 // 3 - Sword 0+11, Bow 1+11, Staff 2+11
         Weapon* weapon = new Weapon(type, level, rarityRand);
@@ -196,7 +207,7 @@ void monsterThread(int level){
     
     int type = 0;
 
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < 3; i++){
         type = rand() % 4 + 21;
         Monster* monster = new Monster(type, level);
         monster->getInfo();
@@ -208,13 +219,15 @@ void monsterThread(int level){
 
 int main(){
     int level = 0;
+    cout << "Type level: ";
     cin >> level;
     if(level >= 1 && level <= 100){
-        thread weapThread(weaponThread, level);
-        thread monThread(monsterThread, level);
-
-        weapThread.join();
-        monThread.join();
+        //thread weapThread(weaponThread, level);
+        //thread monThread(monsterThread, level);
+        weaponThread(level);
+        monsterThread(level);
+        //weapThread.join();
+        //monThread.join();
     }
 
     return 0;
