@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+#include <vector>
 #include <string>
 #include <cstdlib>
 #include <time.h>
@@ -14,8 +15,6 @@
 #include <pthread.h>
 
 using namespace std;
-
-const int rarityWeapWeight[] = {50, 30, 15, 5};
 
 class GameConstants{
 public:
@@ -38,9 +37,10 @@ public:
         ORC = 23,
         BOSS_ARACHNID = 24,
     };
-
-    //static constexpr int rarityWeapWeight[] = {50, 30, 15, 5};
+    
+    static const vector<int> rarityWeapWeight;
 };
+const vector<int> GameConstants::rarityWeapWeight = {50, 30, 15, 5};
 
 class Weapon{
     int m_type = 0;                                                 // Sword = 11, Bow = 12, Staff = 13
@@ -88,11 +88,11 @@ private:
         //return 2;             // 30% chance for Magic - 1 in 3.3
         //return 3;             // 15% chance for Rare - 1 in 6.6
         //return 4;             // 05% chance for Legendary - 1 in 20
-        for (int i = 1; i <= (sizeof(rarityWeapWeight) / sizeof(int)); i++){
-            if(rarity <= rarityWeapWeight[i-1]){
+        for (int i = 1; i <= GameConstants::rarityWeapWeight.size(); i++){
+            if(rarity <= GameConstants::rarityWeapWeight[i-1]){
                 return i;
             }else{
-                rarity -= rarityWeapWeight[i-1];
+                rarity -= GameConstants::rarityWeapWeight[i-1];
             }
         }
         return 999;
@@ -188,7 +188,7 @@ void weaponThread(int level){
     int type = 0;
     int totalRarity = 0;
     int rarityRand = 0;
-    for (int rarityValue : rarityWeapWeight)
+    for (int rarityValue : GameConstants::rarityWeapWeight)
     {
         totalRarity += rarityValue;
     }
